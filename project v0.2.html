@@ -64,9 +64,8 @@
                 UpdateText (msg); 
                 
                 if ( w === 1 ){
-                
-                score = (score + 5)
-                w++;
+                   score = (score + 5)
+                   w++;
                 }
                 
                 
@@ -77,40 +76,36 @@
                     UpdateText (msg);
                     
                      if ( x === 1 ){
-                
-                score = (score + 5)
-                x++;
-                }
+                        score = (score + 5)
+                        x++;
+                     }
                     
-                    } else {
+                     } else {
                      
                      if (btnNum === 2) {
                         var msg= "You see a barn in a field next to a river.";
                         UpdateText (msg);
                         
                          if ( y === 1 ){
-                
-                score = (score + 5)
-                y++;
-                }
+                            score = (score + 5)
+                            y++;
+                         }
                         
-                        } else {
+                         } else {
                         
                           if (btnNum === 3) {
                             var msg= "You see a house unaffected by the fire";
                             UpdateText (msg);
                             
                              if ( z === 1 ){
-                
-                score = (score + 5)
-                z++;
-                }
-                              
-                              } else {
+                                 score = (score + 5)
+                                 z++;
+                             }
+                             } else {
                                 if (btnNum === 4) {
                                 window.alert("You have " + score + " points!!");
+                                
                                 } else { 
-
                                   alert("this should never happen.");
                  }
                }
