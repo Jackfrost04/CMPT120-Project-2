@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+    <!-- Mason Crane
+         Introduction to Programming 
+         Project 3 - v.04 of my game
+         October 17th -->
+    <head>
+        <title> Operation Frost Fire </title>
+        <style>
+           body {background-color:maroon;}
+           .text {font-weight: bold; color:white}
+        </style>
+    </head>
+    <body>    
+        <p class="text">
+       Operation Frost Fire
+        </p>
+         <p class="text">
+       If you need to reach me for any reason please Email me at <a href = "mailto:Mason.Crane1@marist.edu"> Mason.crane1@marist.edu</a>
+       </p>
+        <br>
+          <textarea id= "taGame" rows= "8" cols= "80" > You are in a clearing at the start of your mission.
+          </textarea>
+       
+        <br>      
+
+        <input type= "button"
+               value= "Go North"
+               onclick= "btn_North_click();"
+               id= "idNorth">
+               
+        <input type= "button"
+               value= "Go East"
+               onclick= "btn_East_click();"
+               id= "idEast">
+              
+        <input type= "button"
+               value= "Go South"
+               onclick= "btn_South_click();"
+               id= "idSouth">
+               
+        <input type= "button"
+               value= "Go West"
+               onclick= "btn_West_click();"
+               id= "idWest">
+             
+        <input type= "button"
+               value= "Click to see your Score"
+               onclick= "btn_Score_click();">
+
+        <p class= "text"> Enter a command
+        <input type= "text" 
+               id= "txtcommand">
+        
+        <input type= "button" 
+              value= "Go"
+              onclick= "btn_go_click();">
+       
+       
+       
+        <script type= "text/JavaScript">         
+          
+          //Direction constants used in the move f
+          //unction and the button click event handlers.
+          var score = 0;
+          var Northscore = 1;
+          var Eastscore = 1;
+          var Southscore = 1;
+          var Westscore = 1;        
+          
+  
+          var currentlocation = 0; // current location should be 0 once i program everything else
+          function startingPoint(){
+            currentlocation = 0;
+            UpdateText("You are in a clearing at the start of your mission.");
+            document.getElementById("idNorth").style.visibility="visible";
+            document.getElementById("idEast").style.visibility="visible";
+            document.getElementById("idWest").style.visibility="visible";
+            document.getElementById("idSouth").style.visibility="visible";
+          }
+          
+          function btn_North_click () {
+                    
+                    if (currentlocation === 0) {
+                    currentlocation ="NORTH1";
+                    var msg= "A backpack attached to a wing suit lays in front of you.";
+                    document.getElementById("idEast").style.visibility="hidden";
+                    document.getElementById("idWest").style.visibility="hidden";
+                    document.getElementById("idNorth").style.visibility="visible";
+                    document.getElementById("idSouth").style.visibility="visible";
+                    UpdateText (msg);
+                      if ( Northscore === 1 ){
+                          score = (score + 5)
+                          Northscore= Northscore + 1;
+                       }
+                    }else if (currentlocation=== "NORTH1"){
+                    North2();                    
+                    }else if (currentlocation ==="NORTH2"){ 
+                    UpdateText ("You can not go North anymore");
+                    }else if (currentlocation ==="SOUTH1"){
+                      startingPoint();
+                    }
+                    }
+                    
+                    
+         function North2 (){
+                   currentlocation = "NORTH2";
+                   var msg= "You are infront of your backpack.";
+                   UpdateText (msg);
+                      if ( Northscore === 2 ){
+                      score = (score + 5)
+                      Northscore= Northscore + 1;                   
+                   }
+                   document.getElementById("idNorth").style.visibility="hidden";
+                   document.getElementById("idEast").style.visibility="hidden";
+                   document.getElementById("idWest").style.visibility="hidden";
+                   document.getElementById("idSouth").style.visibility= "visible";
+                   }
+                   
+         
+          function btn_East_click () {
+                    if (currentlocation === 0) {
+                    currentlocation= "EAST1";
+                    var msg= "There is a road going East.";
+                    UpdateText (msg);  
+                      if ( Eastscore === 1 ){
+                       score = (score + 5)
+                       Eastscore= Eastscore + 1;                    
+                    }
+                   document.getElementById("idNorth").style.visibility="hidden";
+                   document.getElementById("idEast").style.visibility="hidden";
+                   document.getElementById("idWest").style.visibility="visible";
+                   document.getElementById("idSouth").style.visibility= "hidden";
+                    }else if (currentlocation ==="WEST1"){
+                      currentlocation = 0;
+                      startingPoint();
+                    }
+                    }
+                     
+                            
+          function btn_South_click () {
+                    if (currentlocation === 0){                    
+                    currentlocation= "SOUTH1";
+                    var msg= "There is a large factory roughly two miles away down a road heading South.";
+                    UpdateText (msg);  
+                      if ( Southscore === 1 ){
+                       score = (score + 5)
+                       Southscore= Southscore + 1;
+                    }
+                    document.getElementById("idEast").style.visibility="hidden";
+                    document.getElementById("idWest").style.visibility="hidden";
+                    document.getElementById("idSouth").style.visibility="hidden";                    
+                    document.getElementById("idNorth").style.visibility="visible";
+                    }else if (currentlocation === "NORTH2"){
+                     currentlocation = 0;
+                     btn_North_click ();  
+                    }else if (currentlocation === "NORTH1"){
+                      currentlocation = 0;
+                      startingPoint();
+                    }  
+                    }
+                    
+          function btn_West_click () {
+                    if(currentlocation === 0){
+                       currentlocation= "WEST1";
+                      var msg= "There is a road going West.";
+                      UpdateText (msg);                  
+                      if ( Westscore === 1 ){
+                       score = (score + 5)
+                       Westscore= Westscore + 1;
+                    }
+                   document.getElementById("idNorth").style.visibility="hidden";
+                   document.getElementById("idEast").style.visibility="visible";
+                   document.getElementById("idWest").style.visibility="hidden";
+                   document.getElementById("idSouth").style.visibility= "hidden";
+                   }else if (currentlocation === "EAST1"){
+                      currentlocation = 0;
+                      startingPoint();
+                   }  
+                   }          
+          function btn_Score_click () {                    
+                    UpdateText ("Your score is; " + score);
+                    } 
+        
+          function btn_go_click(){
+               var userinput = document.getElementById("txtcommand");   
+                        
+               if (userinput.value === ("N")) {
+                  btn_North_click();                
+               }else if (userinput.value === ("n")){ 
+                  btn_North_click();
+               }else if (userinput.value === ("E")){
+                  btn_East_click();
+               }else if (userinput.value === ("e")){ 
+                  btn_East_click();                       
+               }else if (userinput.value === ("S")){
+                  btn_South_click();
+               }else if (userinput.value === ("s")){ 
+                  btn_South_click();  
+               }else if (userinput.value === ("W")){
+                  btn_West_click();
+               }else if (userinput.value === ("w")){ 
+                  btn_West_click();               
+               }else{
+                UpdateText ("Valid commands are \"n\", \"e\", \"s\", \"w\"");                   
+              }
+              }
+          function UpdateText (msg) { 
+              msg = msg + "[" + currentlocation +" ]" ;
+              var ta= document.getElementById ("taGame");
+              ta.value= msg + "\n" + ta.value;
+              }
+       </script>  
+    </body>
+</html>    
