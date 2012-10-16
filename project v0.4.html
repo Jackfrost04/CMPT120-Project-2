@@ -11,15 +11,11 @@
            .text {font-weight: bold; color:white}
         </style>
      <script type= "text/JavaScript">         
-          
-          //Direction constants used in the move f
-          //unction and the button click event handlers.
           var score = 0;
           var Northscore = 1;
           var Eastscore = 1;
           var Southscore = 1;
           var Westscore = 1;        
-          
   
           var currentlocation = 0; // current location should be 0 once i program everything else
           function startingPoint(){
@@ -53,8 +49,7 @@
                       startingPoint();
                     }
                     }
-                    
-                    
+                                       
          function North2 (){
                    currentlocation = "NORTH2";
                    var msg= "You are infront of your backpack.";
@@ -68,8 +63,7 @@
                    document.getElementById("idWest").style.visibility="hidden";
                    document.getElementById("idSouth").style.visibility= "visible";
                    }
-                   
-         
+                            
           function btn_East_click () {
                     if (currentlocation === 0) {
                     currentlocation= "EAST1";
@@ -88,8 +82,7 @@
                       startingPoint();
                     }
                     }
-                     
-                            
+                                                 
           function btn_South_click () {
                     if (currentlocation === 0){                    
                     currentlocation= "SOUTH1";
