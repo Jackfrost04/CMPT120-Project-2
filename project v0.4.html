@@ -15,9 +15,9 @@
           var Northscore = 1;
           var Eastscore = 1;
           var Southscore = 1;
-          var Westscore = 1;        
-  
+          var Westscore = 1;          
           var currentlocation = 0; // current location should be 0 once i program everything else
+          
           function startingPoint(){
             currentlocation = 0;
             UpdateText("You are in a clearing at the start of your mission.");
@@ -32,18 +32,19 @@
                     if (currentlocation === 0) {
                     currentlocation ="NORTH1";
                     var msg= "A backpack attached to a wing suit lays in front of you.";
+                    UpdateText (msg);
                     document.getElementById("idEast").style.visibility="hidden";
                     document.getElementById("idWest").style.visibility="hidden";
                     document.getElementById("idNorth").style.visibility="visible";
                     document.getElementById("idSouth").style.visibility="visible";
-                    UpdateText (msg);
+                   
                       if ( Northscore === 1 ){
                           score = (score + 5)
                           Northscore= Northscore + 1;
                        }
                     }else if (currentlocation=== "NORTH1"){
                     North2();                    
-                    }else if (currentlocation ==="NORTH2"){ 
+                    }else if (currentlocation ==="NORTH2"){     // CHANGE FOR MORE LOCATIONS
                     UpdateText ("You can not go North anymore");
                     }else if (currentlocation ==="SOUTH1"){
                       startingPoint();
@@ -52,16 +53,16 @@
                                        
          function North2 (){
                    currentlocation = "NORTH2";
-                   var msg= "You are infront of your backpack.";
+                   var msg= "You are in front of your backpack.";
                    UpdateText (msg);
+                   document.getElementById("idNorth").style.visibility="hidden";
+                   document.getElementById("idEast").style.visibility="hidden";
+                   document.getElementById("idWest").style.visibility="hidden";
+                   document.getElementById("idSouth").style.visibility= "visible";   
                       if ( Northscore === 2 ){
                       score = (score + 5)
                       Northscore= Northscore + 1;                   
                    }
-                   document.getElementById("idNorth").style.visibility="hidden";
-                   document.getElementById("idEast").style.visibility="hidden";
-                   document.getElementById("idWest").style.visibility="hidden";
-                   document.getElementById("idSouth").style.visibility= "visible";
                    }
                             
           function btn_East_click () {
@@ -69,16 +70,17 @@
                     currentlocation= "EAST1";
                     var msg= "There is a road going East.";
                     UpdateText (msg);  
-                      if ( Eastscore === 1 ){
-                       score = (score + 5)
-                       Eastscore= Eastscore + 1;                    
-                    }
                    document.getElementById("idNorth").style.visibility="hidden";
                    document.getElementById("idEast").style.visibility="hidden";
                    document.getElementById("idWest").style.visibility="visible";
-                   document.getElementById("idSouth").style.visibility= "hidden";
-                    }else if (currentlocation ==="WEST1"){
-                      currentlocation = 0;
+                   document.getElementById("idSouth").style.visibility= "hidden";  
+                      if ( Eastscore === 1 ){
+                       score = (score + 5)
+                       Eastscore= Eastscore + 1;                    
+                    }  
+                    }else if (currentlocation ==="EAST1"){   // CHANGE FOR MORE LOCATIONS
+                    UpdateText ("You can not go East anymore"); 
+                    }else if (currentlocation === "WEST1"){                        
                       startingPoint();
                     }
                     }
@@ -88,14 +90,16 @@
                     currentlocation= "SOUTH1";
                     var msg= "There is a large factory roughly two miles away down a road heading South.";
                     UpdateText (msg);  
-                      if ( Southscore === 1 ){
-                       score = (score + 5)
-                       Southscore= Southscore + 1;
-                    }
                     document.getElementById("idEast").style.visibility="hidden";
                     document.getElementById("idWest").style.visibility="hidden";
                     document.getElementById("idSouth").style.visibility="hidden";                    
-                    document.getElementById("idNorth").style.visibility="visible";
+                    document.getElementById("idNorth").style.visibility="visible"; 
+                      if ( Southscore === 1 ){
+                       score = (score + 5)
+                       Southscore= Southscore + 1;
+                    } 
+                    }else if (currentlocation === "SOUTH1"){  // CHANGE FOR MORE LOCATIONS
+                    UpdateText("You can not go South anymore");                  
                     }else if (currentlocation === "NORTH2"){
                      currentlocation = 0;
                      btn_North_click ();  
@@ -110,15 +114,17 @@
                        currentlocation= "WEST1";
                       var msg= "There is a road going West.";
                       UpdateText (msg);                  
+                     document.getElementById("idNorth").style.visibility="hidden";
+                     document.getElementById("idEast").style.visibility="visible";
+                     document.getElementById("idWest").style.visibility="hidden";
+                     document.getElementById("idSouth").style.visibility= "hidden";
                       if ( Westscore === 1 ){
                        score = (score + 5)
                        Westscore= Westscore + 1;
                     }
-                   document.getElementById("idNorth").style.visibility="hidden";
-                   document.getElementById("idEast").style.visibility="visible";
-                   document.getElementById("idWest").style.visibility="hidden";
-                   document.getElementById("idSouth").style.visibility= "hidden";
-                   }else if (currentlocation === "EAST1"){
+                    }else if (currentlocation ==="WEST1"){    // CHANGE FOR MORE LOCATIONS
+                    UpdateText("You can not go West anymore");                   
+                    }else if (currentlocation === "EAST1"){
                       currentlocation = 0;
                       startingPoint();
                    }  
