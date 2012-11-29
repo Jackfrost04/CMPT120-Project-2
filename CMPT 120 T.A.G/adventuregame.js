@@ -5,10 +5,11 @@ var eastScore       = 1;
 var southScore      = 1;
 var westScore       = 1;          
 //items
-var gun             = true;
-var backpack        = true;
-var binoculars      = true;
-var DogTags         = true;
+var Key1            = true;
+var Key2            = true;
+var Key3            = true;
+var Key4            = true;
+var magicalSword    = true;
 //location moves
 var movecount       = 1;
 var NORTH           = 0;
@@ -72,64 +73,79 @@ function displayNewLocation (){
      var Items    = []; 
      var location = [];          
       switch (currentlocation){    
-          case 0 :  Items   [0] = Start =  new itemDetails("There is a gun in this room.");
+          case 0 :  Items   [0] = Start =  new itemDetails("The first Key to start you adventure is in this room. Take it to begin.");
                                     UpdateText (Start); 
-                    location [0] =  Start =  new locationDetails ("Start", "You are in a clearing at the start of your mission. After walking around for a while you realize you forgot your gun from the very beginning. Have you picked it up yet?", "The item for this room is a gun.",location0());
+                    location [0] =  Start =  new locationDetails ("Start", "You are inside of the dining room where the Sneaky Teemo eats his meals. The item for this room is your first magical key.",location0());
                                     UpdateText (Start);   
                                    break;
           
           case 1 :  Items    [1] = North1 =  new itemDetails("There isn't an item for this room.");
                                    UpdateText (North1);
-                    location [1] = North1  = new locationDetails("North 1",   "A backpack attached to a wing suit lays in front of you.", location1());
+                    location [1] = North1  = new locationDetails("North 1",   "You have just walked into a dark musty hallway. The Sneaky Teemo’s stench is quite potent.", location1());
                                    UpdateText (North1); 
                   
                                    break;
                                    
-          case 2 : Items    [2] =  North2 =  new itemDetails("Your backpack is on the ground.");
+          case 2 : Items    [2] =  North2 =  new itemDetails("There is a magical sword inside of a chest with four key holes.");
                                    UpdateText (North2);
-                   location [2] =  North2 = new locationDetails ("North 2", "You are in front of your backpack.", location2());
+                   location [2] =  North2 = new locationDetails ("North 2", "You are outside of a large palace chamber where the stench from the death and decay from the Sneaky Teemo causes you to nearly puke all over the ground.", location2());
                                    UpdateText (North2);               
                                    break;
                                    
           case 3 : Items    [3] = North3 =  new itemDetails("There are no items in here.");
                                    UpdateText (North3);
-                    location [3] =  North3 = new locationDetails ("North 3", "You continue North and find an abandoned shed. You are not able to go any farther North.", location3());
+                    location [3]; if (magicalSword === false){
+                                   North3 = new locationDetails ("North 3", "You have battled the Sneaky Teemo valiantly and slain the demon! CONGRATULATIONS!! YOU WON!", location3());
                                    UpdateText (North3); break;
+                                   }else{
+                                   if (magicalSword === true){
+                                   North3 = new locationDetails ("North 3", "You did not have all of your required items so the Sneaky Teemo one shot you. You LOST. Reload the game to try again.", endGame());
+                                   UpdateText (North3); break;
+                                   }
+                                   }
+                                   
                                    
           case 4 : Items    [4] = East1 =  new itemDetails("There are no items in here.");
                                    UpdateText (East1);
-                   location [4] =  East1 = new locationDetails ("East 1", "You are walking down a long dirt road.", location4());
+                   location [4] =  East1 = new locationDetails ("East 1", "You are inside of a  corridor where you smell something grotesque cooking from the kitchen.", location4());
                                    UpdateText (East1); break;
                                    
-          case 5 : Items    [5] = East2 =  new itemDetails("There are binoculars on the ground.");
+          case 5 : Items    [5] = East2 =  new itemDetails("The second key is inside of a chest sitting on the kitchen counter.");
                                    UpdateText (East2);
-                   location [5] =  East2 = new locationDetails ("East 2", "An enemy military watch tower is in front of you. You can not continue going East anymore.", location5());
+                   location [5] =  East2 = new locationDetails ("East 2", "You are inside of the kitchen where the Sneaky Teemo is cooking some sort of monstrosity in the oven. On the table next to the fridge you see a chest with one key hole.", location5());
                                    UpdateText (East2); break;
                                    
           case 6 : Items    [6] = South1 =  new itemDetails("There are no items in here.");
-                                   UpdateText (South2);
-                   location [6] =  South1 = new locationDetails ("South 1", "There is a large factory roughly two miles away down a road heading South.", location6());
+                                   UpdateText (South1);
+                   location [6] =  South1 = new locationDetails ("South 1", "You walk outside into a garden engulfed in man eating plants.", location6());
                                    UpdateText (South1); break;
                                    
-          case 7 : Items    [7] = South2 =  new itemDetails("There are no items in here.");
+          case 7 : Items    [7] = South2 =  new itemDetails("The third key is inside of a chest beside one of the man eating plants.");
                                    UpdateText (South2);
-                    location [7] = South2 = new locationDetails ("South 2", "You are now roughly one mile away from the factory, and your mission starting point. You can no longer move South.", location7());
+                    location [7] = South2 = new locationDetails ("South 2", "After walking a ways through the garden you find a chest with two key holes.", location7());
                                    UpdateText (South2); break;
                                    
           case 8 : Items    [8] = West1 =  new itemDetails("There are no items in here.");
                                    UpdateText (West1);
-                   location [8] =  West1 = new locationDetails ("West 1", "You are walking down beside a river.", location8());
+                   location [8] =  West1 = new locationDetails ("West 1", "You walk into the cellar and see goggles hanging up on a hook. ", location8());
                                    UpdateText (West1); break;
                                    
-          case 9 : Items    [9] = West2 =  new itemDetails("There are Dog Tags on the ground.");
+          case 9 : Items    [9] = West2 =  new itemDetails("The fourth key is inside of a chest with three key holes underneath a shelf unit filled with poison filled vials.");
                                    UpdateText (West2);
-                   location [9] =  West2 = new locationDetails ("West 2", "A large dam is blocking your way. You can not go West any longer.", location9());
+                   location [9] =  West2 = new locationDetails ("West 2", "You walk farther into the cellar and see poison vials all around.", location9());
                                    UpdateText (West2); break;
 }
 } 
 function StartingText(){
-          msg = "You are at the start of your mission";
+          msg = "You are inside of the dining room where the Sneaky Teemo eats his meals. The item for this room is your first magical key. Take it to begin.";
          UpdateText (msg)
+}
+function endGame(){
+         document.getElementById("idNorth").style.visibility="hidden";
+         document.getElementById("idEast").style.visibility="hidden";
+         document.getElementById("idWest").style.visibility="hidden";
+         document.getElementById("idSouth").style.visibility="hidden";
+         document.getElementById("idGo").style.visibility="hidden";
 }            
 function location0/*start*/ (){       
          document.getElementById("idNorth").style.visibility="visible";
@@ -249,21 +265,23 @@ function btn_go_click(){
           }
           }
 function Help(){
-          UpdateText("The valid commands for Operation Frost Fire are N to go North, E to go East, S to go South, and W to go West. Type 'Take' to take an item off the ground. Type 'Inventory' to view your items. Any other inputs will not let you continue through the game.");
+          UpdateText("The valid commands for Killing the Sneaky Sneak are N to go North, E to go East, S to go South, and W to go West. Type Take to take an item off the ground. Type Inventory to view your items. Any other inputs will not let you continue through the game.");
           }                   
 function Valid_commands(){
-          UpdateText ("Type 'Help' for valid commands and useful information."); 
+          UpdateText ("Type Help for valid commands and useful information."); 
           } 
 function Take (){  
   switch (currentlocation) {  
       case 0:
-      if (gun === false){
-      UpdateText ("You already have your gun.");
+      if (Key1 === false){
+      UpdateText ("You already have your first key.");
       }else{
-        inventory.push("You have your gun in your inventory.");
-        UpdateText ("You have picked up a gun");
-      gun = false;
-     } 
+      if (Key1 === true){
+        inventory.push("You have your first magical key in your inventory.");
+        UpdateText ("You have picked up the first key.");
+     Key1 = false;
+     }
+     }      
       break;
       
       case 1:
@@ -271,39 +289,57 @@ function Take (){
       break;
       
       case 2:
-      if (backpack === false){
-      UpdateText ("You already have your backpack.");
+      if (Key4 === false){
+       UpdateText ("You Have unlocked the final chest and have taken a magical sword.");
+       inventory.push("You have your magical sword in your inventory.");
+       magicalSword = false;
       }else{
-        inventory.push("You have your backpack in your inventory.");
-        UpdateText ("You have picked up your backpack");
-      backpack = false;
+       UpdateText ("You can not unlock the final chest to claim your final item because you do not have all of they keys. Go back and try and find all of them.");
       }
       break;          
       
       case 3:
-      UpdateText ("There are no items in this room to take.");
+       UpdateText ("There are no items in this room to take.");
       break;
       
       case 4:
-      UpdateText ("There are no items in this room to take.");
+       UpdateText ("There are no items in this room to take.");
       break;
        
       case 5:
-      if (binoculars === false){
-      UpdateText ("You already have your binoculars.");
+      if (Key2 === false){
+      UpdateText ("You already have your second key.");
+      }else{     
+      if (Key1 === true){
+      UpdateText ("You can not unlock this chest because you do not have enough keys. Go back and find the rest.");      
       }else{
-        inventory.push("You have your binoculars in your inventory.");
-        UpdateText ("You have picked up your binoculars");
-      backpack = false;
+      if (Key1 === false){         
+        UpdateText ("You have unlocked the chest with one key hole and claimed your second key.");
+        inventory.push("You have your second magical key in your inventory.");
+        Key2 = false;  
+      }    
       }
+      }     
       break;
-      
+           
       case 6:
       UpdateText ("There are no items in this room to take.");
       break; 
       
       case 7:
-      UpdateText ("There are no items in this room to take.");
+      if (Key3 ===false){
+      UpdateText ("you already have your third key.");
+      }else{
+      if (Key1 || Key2 === true){
+      UpdateText ("You can not unlock this chest because you do not have enough keys.Go back and find the rest.");
+      }else{
+      if (Key2 === false){             
+        UpdateText ("You have unlocked the chest with two key hole and claimed your third key.");
+        inventory.push("You have your third magical key in your inventory.");
+      Key3 = false;
+      }
+      }
+      }      
       break;        
   
       case 8:
@@ -311,12 +347,18 @@ function Take (){
       break;
   
       case 9:
-      if (DogTags === false){
-      UpdateText ("You already have the Dog Tags.");
+      if (Key4 === false){
+      UpdateText ("You already have your fourth key.");
       }else{
-        inventory.push("You have the Dog Tags in your inventory.");
-        UpdateText ("You have picked up the Dog Tags");
-      backpack = false;
+      if (Key1 || Key2 || Key3 === true){
+        UpdateText ("You can not unlock this chest because you do not have enough keys.Go back and find the rest.");
+      }else{
+      if (Key3 === false){ 
+        UpdateText ("You have unlocked the chest with three key holes and claimed your fourth key.");
+        inventory.push("You have your fourth magical key in your inventory.");
+      Key4 = false;
+      }
+      }
       }
       break;
   }                   
