@@ -42,7 +42,7 @@ function move(direction){
         var newlocation = nav[currentlocation][direction];
         if (newlocation !== -1){
         currentlocation = newlocation;     
-        displayNewLocation ();
+        displayPrototype ();
         }else {
             UpdateText ("You cannot go that way.");
       }    
@@ -69,7 +69,7 @@ function itemDetails(_discription) {
    }   
 }
 
-function displayNewLocation (){
+function displayPrototype (){
      var Items    = []; 
      var location = [];          
       switch (currentlocation){    
